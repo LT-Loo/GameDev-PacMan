@@ -314,8 +314,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1676882552}
   - component: {fileID: 1676882551}
+  - component: {fileID: 1676882553}
   m_Layer: 0
-  m_Name: BGM Audio Source
+  m_Name: BackgroundMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,12 +332,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0aede1f18958fad409477a4f537d5337, type: 3}
+  m_Resource: {fileID: 8300000, guid: 0aede1f18958fad409477a4f537d5337, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -433,6 +434,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1676882553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676882550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7511f4edb9eb84f8be9c293aaac713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intro: {fileID: 8300000, guid: 0aede1f18958fad409477a4f537d5337, type: 3}
+  ghostNormalBGM: {fileID: 8300000, guid: 682626490c9c61b41ad023f3b7107a64, type: 3}
+  ghostScaredBGM: {fileID: 8300000, guid: 136cafe7921ba484aadb911f77b4672a, type: 3}
+  ghostDeathBGM: {fileID: 8300000, guid: 72c9b267e684ee34db65657eb8cbd901, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
