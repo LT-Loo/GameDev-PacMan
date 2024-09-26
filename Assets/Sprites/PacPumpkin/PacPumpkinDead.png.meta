@@ -100,10 +100,10 @@ TextureImporter:
       name: PacPumpkinDead_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 67
-        width: 28
-        height: 26
+        x: 1
+        y: 70
+        width: 30
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f483a4219bfd2a4eb8cec0d6b773bb5
-      internalID: -1447241419
+      spriteID: 5ccf8e7a4fbb7f3408d91157435737af
+      internalID: 695127689
       vertices: []
       indices: 
       edges: []
@@ -121,10 +121,10 @@ TextureImporter:
       name: PacPumpkinDead_1
       rect:
         serializedVersion: 2
-        x: 34
-        y: 67
-        width: 28
-        height: 25
+        x: 33
+        y: 70
+        width: 30
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4b9cb2fc2d1a204da43be4535c9c453
-      internalID: -1467982735
+      spriteID: 590b2bb47d2b98441b895443b34bf77a
+      internalID: -1766936568
       vertices: []
       indices: 
       edges: []
@@ -142,10 +142,10 @@ TextureImporter:
       name: PacPumpkinDead_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 67
-        width: 28
-        height: 23
+        x: 65
+        y: 70
+        width: 30
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14c447f42527f014489073d905fe571c
-      internalID: -1867941893
+      spriteID: aede5555eb99df648b24a5b41bbc2e64
+      internalID: -1634409803
       vertices: []
       indices: 
       edges: []
@@ -163,10 +163,10 @@ TextureImporter:
       name: PacPumpkinDead_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 35
-        width: 28
-        height: 20
+        x: 1
+        y: 38
+        width: 30
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5adf1398f9050a8419d38b5484b72e30
-      internalID: 250144323
+      spriteID: ae8b30397a776094692284fcd2f9350c
+      internalID: -639987962
       vertices: []
       indices: 
       edges: []
@@ -184,10 +184,10 @@ TextureImporter:
       name: PacPumpkinDead_4
       rect:
         serializedVersion: 2
-        x: 34
-        y: 35
-        width: 28
-        height: 17
+        x: 33
+        y: 38
+        width: 30
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8321486aa087a144c8b235b695e85a63
-      internalID: -1431472457
+      spriteID: 1106239aa86ab1b49bc3482654b5dc88
+      internalID: -1690591761
       vertices: []
       indices: 
       edges: []
@@ -205,10 +205,10 @@ TextureImporter:
       name: PacPumpkinDead_5
       rect:
         serializedVersion: 2
-        x: 66
-        y: 35
-        width: 28
-        height: 13
+        x: 65
+        y: 38
+        width: 30
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e5e70e2e1599ad4592b61ce6f01006a
-      internalID: 1816892388
+      spriteID: 45846629706a2f840ba513fdd5c2ffcb
+      internalID: 1536829366
       vertices: []
       indices: 
       edges: []
@@ -226,10 +226,10 @@ TextureImporter:
       name: PacPumpkinDead_6
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 26
-        height: 9
+        x: 2
+        y: 6
+        width: 28
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,8 +237,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08e65dc190c12b343a4938c427356918
-      internalID: -1092970324
+      spriteID: bf20526ad05d4774f89321103fe608dd
+      internalID: 833465138
       vertices: []
       indices: 
       edges: []
@@ -248,9 +248,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 37
-        y: 3
-        width: 21
-        height: 5
+        y: 6
+        width: 23
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,8 +258,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e839be4b1546c5441af03e714ae0ffcf
-      internalID: 1993852918
+      spriteID: 5d8d485271abae24a8271068b7c1313e
+      internalID: -1589241777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PacPumpkinDead_8
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 6
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 339db659ce1de0b48a04763f585c4d79
+      internalID: -1314652754
       vertices: []
       indices: 
       edges: []
@@ -267,7 +288,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 02d5150f4a33d2449b90a504fd89b97b
+    spriteID: 376e001314bf85c4d88a2f1d6bf3f470
     internalID: 0
     vertices: []
     indices: 
@@ -275,14 +296,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PacPumpkinDead_0: -1447241419
-      PacPumpkinDead_1: -1467982735
-      PacPumpkinDead_2: -1867941893
-      PacPumpkinDead_3: 250144323
-      PacPumpkinDead_4: -1431472457
-      PacPumpkinDead_5: 1816892388
-      PacPumpkinDead_6: -1092970324
-      PacPumpkinDead_7: 1993852918
+      PacPumpkinDead_0: 695127689
+      PacPumpkinDead_1: -1766936568
+      PacPumpkinDead_2: -1634409803
+      PacPumpkinDead_3: -639987962
+      PacPumpkinDead_4: -1690591761
+      PacPumpkinDead_5: 1536829366
+      PacPumpkinDead_6: 833465138
+      PacPumpkinDead_7: -1589241777
+      PacPumpkinDead_8: -1314652754
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
