@@ -6484,7 +6484,7 @@ Transform:
   m_GameObject: {fileID: 128348949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.50286, y: -13.418751, z: -1.9437883}
+  m_LocalPosition: {x: 15.50286, y: -13.418751, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -68572,6 +68572,7 @@ GameObject:
   - component: {fileID: 1488357730}
   - component: {fileID: 1488357729}
   - component: {fileID: 1488357728}
+  - component: {fileID: 1488357731}
   m_Layer: 0
   m_Name: PacPumpkin
   m_TagString: Untagged
@@ -68592,7 +68593,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: f194edfab74be6840b4a48f766a0ac30, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -68663,13 +68664,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488357727}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1.0000001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1488357731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488357727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e751615e0bf4b649b90cab61071bdd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
 --- !u!1 &1490221712
 GameObject:
   m_ObjectHideFlags: 0
