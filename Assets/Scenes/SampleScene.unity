@@ -40022,6 +40022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e751615e0bf4b649b90cab61071bdd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmSource: {fileID: 1676882551}
   isDead: 1
 --- !u!1 &836728210
 GameObject:
@@ -68683,6 +68684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e751615e0bf4b649b90cab61071bdd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmSource: {fileID: 1676882551}
   isDead: 0
 --- !u!1 &1490221712
 GameObject:

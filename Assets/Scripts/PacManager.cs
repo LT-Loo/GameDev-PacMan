@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class PacManager : MonoBehaviour
 {
+    // For background music
+    public AudioSource bgmSource;
+    
     // For animation
     private Animator anim;
     public bool isDead;
@@ -33,7 +36,7 @@ public class PacManager : MonoBehaviour
     {
         anim.SetBool("isDead", isDead);
 
-        if (!isDead) {PacMovement();}
+        if (!isDead && bgmSource.clip.name != "Intro") {PacMovement();}
 
     }
 
