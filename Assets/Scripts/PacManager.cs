@@ -36,6 +36,7 @@ public class PacManager : MonoBehaviour
     {
         anim.SetBool("isDead", isDead);
 
+        // Move PacPumpkin after intro ends
         if (!isDead && bgmSource.clip.name != "Intro") {PacMovement();}
 
     }

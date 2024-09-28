@@ -38,10 +38,11 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
-        layerMask = LayerMask.NameToLayer("Layout");
+        layerMask = LayerMask.NameToLayer("Layout"); // Apply layer to show only layout and PacPumpkin on Display 1
         
-        Destroy(manualLayout);
+        Destroy(manualLayout); // Destroy manual layout
 
+        // Create new layout parent object
         layout = new GameObject("Layout Generate").GetComponent<Transform>();
         layout.position = Vector3.zero;
         layout.rotation = Quaternion.identity;
@@ -49,7 +50,9 @@ public class LevelGenerator : MonoBehaviour
 
         tiles = new Tile[levelMap.GetLength(0), levelMap.GetLength(1)];
 
+        // Access elements in levelMap array
         for (int r = 0; r < levelMap.GetLength(0); r++) {
+            // Create new empty row object
             GameObject row = new GameObject("R" + r);
             row.transform.position = new Vector3(0, -r, 0);
             row.transform.rotation = Quaternion.identity;
@@ -58,45 +61,40 @@ public class LevelGenerator : MonoBehaviour
             for (int c = 0; c < levelMap.GetLength(1); c++) {
                 Vector3 position = new Vector3(c, -r, 0);
                 Quaternion rotation = Quaternion.identity;
-                GameObject tile = path;
-                List<int> match = new List<int>();
+                GameObject tile = path; // Path sprite as default tile
+                List<int> match = new List<int>(); // List to store potential neighbour type
 
+                // Assign sprites according to tile type and add neighbour types
                 if (levelMap[r, c] == 1) {tile = outerCorner; match.Add(2);} 
                 if (levelMap[r, c] == 2) {tile = outerWall; match.Add(2); match.Add(1); match.Add(7);} 
                 if (levelMap[r, c] == 3) {tile = innerCorner; match.Add(3); match.Add(4);} 
                 if (levelMap[r, c] == 4) {tile = innerWall; match.Add(3); match.Add(4); match.Add(7);}
                 if (levelMap[r, c] == 7) {tile = jointWall; match.Add(2); match.Add(4);} 
 
-                string matchStr = "";
-                foreach (int m in match) {
-                    matchStr += m.ToString() + " ";
-                }
-                Debug.Log(r + ", " + c + ", Match: " + matchStr);
-
+                // To check if neighbours exist
                 bool checkL = false; bool checkR = false; 
                 bool checkU = false; bool checkB = false;
 
-                if (r == 0) {
+                if (r == 0) { // If top row
                     checkB = true;
                     if (c == 0) {checkR = true;} 
                     else if (c == levelMap.GetLength(1) - 1) {checkL = true;}
                     else {checkL = true; checkR = true;}
                 }
-                else if (r == levelMap.GetLength(0) - 1) {
+                else if (r == levelMap.GetLength(0) - 1) { // If last row
                     checkU = true;
                     if (c == 0) {checkR = true;} 
                     else if (c == levelMap.GetLength(1) - 1) {checkL = true;}
                     else {checkL = true; checkR = true;}
                 } 
-                else {
+                else { // If row in between
                     checkU = true;
                     checkB = true;
                     if (c < levelMap.GetLength(1) - 1) {checkR = true;}
                     if (c > 0) {checkL = true;}
                 }
 
-                Debug.Log("To check R:" + checkR + ", L: " + checkL + ", U: " + checkU + ", B: " + checkB);
-
+                // To check if current tile is potentially connected to its neighbours
                 bool Left = false; bool Right = false;
                 bool Up = false; bool Bottom = false;
 
@@ -105,23 +103,23 @@ public class LevelGenerator : MonoBehaviour
                 if (checkU) {Up = checkUp(r, c, match);}
                 if (checkB) {Bottom = checkBottom(r, c, match);}
 
-                Debug.Log("After check R:" + Right + ", L: " + Left + ", U: " + Up + ", B: " + Bottom);
+                int trueCount = getTrueCount(Left, Right, Up, Bottom); // Count number of assumed connections
 
-                int trueCount = getTrueCount(Left, Right, Up, Bottom);
-
+                // Logic to determine tile rotation
                 match.Clear();
                 match.Add(0); match.Add(5); match.Add(6);
 
+                // If tile is corner - Must have only two connections to be able to determine direction
                 if (levelMap[r, c] == 1 || levelMap[r, c] == 3 || levelMap[r, c] == 7) {
-                    
-                    if (trueCount == 4) {
+ 
+                    if (trueCount == 4) { // If 4 possible connections, reduce to 2
                         if (checkDiagonal(r - 1, c - 1, match)) {Bottom = false; Right = false;}
                         if (checkDiagonal(r - 1, c + 1, match)) {Bottom = false; Left = false;}
                         if (checkDiagonal(r + 1, c - 1, match)) {Up = false; Right = false;}
                         if (checkDiagonal(r + 1, c + 1, match)) {Up = false; Left = false;}
                     }
 
-                    if (trueCount == 3) {
+                    if (trueCount == 3) { // If 3 possible connections, reduce to 2
                         if (Up && Bottom) {
                             if (Left) {
                                 if (checkDiagonal(r - 1, c - 1, match)) {Bottom = false;}
@@ -144,7 +142,7 @@ public class LevelGenerator : MonoBehaviour
                         }
                     }
 
-                    if (trueCount == 1) {
+                    if (trueCount == 1) { // If 1 possible connections, increase to 2
                         if (Up || Bottom) {
                             if (!checkR) {Right = true;}
                             else {Left = true;}
@@ -155,11 +153,9 @@ public class LevelGenerator : MonoBehaviour
                         }
                     }
 
-                    Debug.Log("After adjust R:" + Right + ", L: " + Left + ", U: " + Up + ", B: " + Bottom);
-
                     trueCount = getTrueCount(Left, Right, Up, Bottom);
 
-                    if (trueCount == 2) {
+                    if (trueCount == 2) { // If 2 connections
                         if (Right && Up) {rotation = Quaternion.Euler(0f, 0f, 90f);}
                         else if (Right && Bottom) {rotation = Quaternion.identity;}
                         else if (Left && Up) {rotation = Quaternion.Euler(0f, 0f, 180f);}
@@ -167,8 +163,9 @@ public class LevelGenerator : MonoBehaviour
                     }
                 }
 
+                // If tile is wall - Determine direction with 1 or 2 connections
                 if (levelMap[r, c] == 2 || levelMap[r, c] == 4) {   
-                    if (trueCount > 1) {
+                    if (trueCount > 1) { // If more than 1 connection
                         if (trueCount == 2) {
                             if ((Left != Right) && (Up != Bottom)) {
                                 bool changed = false;
@@ -176,7 +173,6 @@ public class LevelGenerator : MonoBehaviour
                                 if (checkR && !Right && !changed) {Left = !checkRight(r, c, match); changed = true;}
                                 if (checkU && !Up && !changed) {Bottom = !checkUp(r, c, match); changed = true;}
                                 if (checkB && !Bottom && !changed) {Up = !checkBottom(r, c, match);}
-                                Debug.Log("Wall Change:" + Right + ", L: " + Left + ", U: " + Up + ", B: " + Bottom);
                             }
                         }
                         if (Left && Right) {rotation = Quaternion.Euler(0f, 0f, 90f);}
@@ -184,15 +180,17 @@ public class LevelGenerator : MonoBehaviour
 
                     trueCount = getTrueCount(Left, Right, Up, Bottom);
 
-                    if (trueCount == 1) {
+                    if (trueCount == 1) { // If only 1 connection
                         if (Left || Right) {rotation = Quaternion.Euler(0f, 0f, 90f);}
                     }
                 }
                 
+                // Create tile
                 tiles[r, c] = new Tile(levelMap[r, c], position, rotation, r, c);
                 GameObject newTile = Instantiate(tile, position, rotation, row.transform);
                 newTile.layer = layerMask;
 
+                // Create pellets based on tile type
                 if (levelMap[r, c] == 5) {
                     GameObject newPellet = Instantiate(pellet, position, Quaternion.identity, newTile.transform);
                     newPellet.tag = "Pellet";
@@ -208,8 +206,9 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        // Mirror layout to form complete game layout
         Vector3 layoutPos = new Vector3(layout.position.x + 2 * levelMap.GetLength(1) - 1, layout.position.y, layout.position.z);
-        Transform layoutUR = Instantiate(layout, layoutPos, Quaternion.Euler(0f, 180f, 0f));
+        Instantiate(layout, layoutPos, Quaternion.Euler(0f, 180f, 0f));
 
         layoutPos = new Vector3(layout.position.x + 2 * levelMap.GetLength(1) - 1, layout.position.y - 2 * levelMap.GetLength(0) + 2, layout.position.z);
         Transform layoutBR = Instantiate(layout, layoutPos, Quaternion.Euler(-180f, 180f, 0f));
@@ -226,27 +225,32 @@ public class LevelGenerator : MonoBehaviour
 
     }
 
-
+    // Check tile type of right neighbour
     bool checkRight(int r, int c, List<int> match) {
         return match.Contains(levelMap[r, c + 1]);
     }
 
+    // Check tile type of left neighbour
     bool checkLeft(int r, int c, List<int> match) {
         return match.Contains(levelMap[r, c - 1]);
     }
 
+    // Check tile type of neighbour above
     bool checkUp(int r, int c, List<int> match) {
         return match.Contains(levelMap[r - 1, c]);
     }
 
+    // Check tile type of neighbour below
     bool checkBottom(int r, int c, List<int> match) {
         return match.Contains(levelMap[r + 1, c]);
     }
 
+    // Check tile type of diagonal neighbour
     bool checkDiagonal(int r, int c, List<int> match) {
         return match.Contains(levelMap[r, c]);
     }
 
+    // Count number of connections
     int getTrueCount(bool left, bool right, bool up, bool bottom) {
         int trueCount = 0;
         if (left) {trueCount++;}
