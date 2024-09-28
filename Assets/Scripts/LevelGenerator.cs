@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -188,11 +189,22 @@ public class LevelGenerator : MonoBehaviour
 
             }
         }
+
+        Vector3 layoutPos = new Vector3(layout.position.x + 2 * levelMap.GetLength(1) - 1, layout.position.y, layout.position.z);
+        Instantiate(layout, layoutPos, Quaternion.Euler(0f, 180f, 0f));
+
+        layoutPos = new Vector3(layout.position.x + 2 * levelMap.GetLength(1) - 1, layout.position.y - 2 * levelMap.GetLength(0) + 2, layout.position.z);
+        Transform LayoutBR = Instantiate(layout, layoutPos, Quaternion.Euler(-180f, 180f, 0f));
+        Destroy(LayoutBR.transform.Find("R" + (levelMap.GetLength(0) - 1)).gameObject);
+
+        layoutPos = new Vector3(layout.position.x, layout.position.y - 2 * levelMap.GetLength(0) + 2, layout.position.z);
+        Transform LayoutBL = Instantiate(layout, layoutPos, Quaternion.Euler(-180f, 0f, 0f));
+        Destroy(LayoutBL.transform.Find("R" + (levelMap.GetLength(0) - 1)).gameObject);
+
     }
 
 
     bool checkRight(int r, int c, List<int> match) {
-        // Debug.Log("checking right " + r + ", " + (c + 1) + ": " + levelMap[r, c + 1]);
         return match.Contains(levelMap[r, c + 1]);
     }
 
