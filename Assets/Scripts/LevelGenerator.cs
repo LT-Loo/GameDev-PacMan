@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -185,7 +186,17 @@ public class LevelGenerator : MonoBehaviour
                 }
                 
                 tiles[r, c] = new Tile(levelMap[r, c], position, rotation, r, c);
-                Instantiate(tile, position, rotation, row.transform);
+                GameObject newTile = Instantiate(tile, position, rotation, row.transform);
+
+                if (levelMap[r, c] == 5) {
+                    GameObject newPellet = Instantiate(pellet, position, Quaternion.identity, newTile.transform);
+                    newPellet.tag = "Pellet";
+                }
+
+                if (levelMap[r, c] == 6) {
+                    GameObject newPellet = Instantiate(powerPellet, position, Quaternion.identity, newTile.transform);
+                    newPellet.tag = "Pellet";
+                }
 
             }
         }
@@ -200,6 +211,11 @@ public class LevelGenerator : MonoBehaviour
         layoutPos = new Vector3(layout.position.x, layout.position.y - 2 * levelMap.GetLength(0) + 2, layout.position.z);
         Transform LayoutBL = Instantiate(layout, layoutPos, Quaternion.Euler(-180f, 0f, 0f));
         Destroy(LayoutBL.transform.Find("R" + (levelMap.GetLength(0) - 1)).gameObject);
+
+        GameObject[] pellets = GameObject.FindGameObjectsWithTag("Pellet");
+        foreach (GameObject pellet in pellets) {
+            pellet.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
 
     }
 
