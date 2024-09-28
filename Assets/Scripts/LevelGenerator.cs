@@ -34,14 +34,18 @@ public class LevelGenerator : MonoBehaviour
     public GameObject pellet, powerPellet;
 
     private Tile[,] tiles;
+    int layerMask;
 
     void Start()
     {
+        layerMask = LayerMask.NameToLayer("Layout");
+        
         Destroy(manualLayout);
 
         layout = new GameObject("Layout Generate").GetComponent<Transform>();
         layout.position = Vector3.zero;
         layout.rotation = Quaternion.identity;
+        layout.gameObject.layer = layerMask;
 
         tiles = new Tile[levelMap.GetLength(0), levelMap.GetLength(1)];
 
@@ -187,30 +191,33 @@ public class LevelGenerator : MonoBehaviour
                 
                 tiles[r, c] = new Tile(levelMap[r, c], position, rotation, r, c);
                 GameObject newTile = Instantiate(tile, position, rotation, row.transform);
+                newTile.layer = layerMask;
 
                 if (levelMap[r, c] == 5) {
                     GameObject newPellet = Instantiate(pellet, position, Quaternion.identity, newTile.transform);
                     newPellet.tag = "Pellet";
+                    newPellet.layer = layerMask;
                 }
 
                 if (levelMap[r, c] == 6) {
                     GameObject newPellet = Instantiate(powerPellet, position, Quaternion.identity, newTile.transform);
                     newPellet.tag = "Pellet";
+                    newPellet.layer = layerMask;
                 }
 
             }
         }
 
         Vector3 layoutPos = new Vector3(layout.position.x + 2 * levelMap.GetLength(1) - 1, layout.position.y, layout.position.z);
-        Instantiate(layout, layoutPos, Quaternion.Euler(0f, 180f, 0f));
+        Transform layoutUR = Instantiate(layout, layoutPos, Quaternion.Euler(0f, 180f, 0f));
 
         layoutPos = new Vector3(layout.position.x + 2 * levelMap.GetLength(1) - 1, layout.position.y - 2 * levelMap.GetLength(0) + 2, layout.position.z);
-        Transform LayoutBR = Instantiate(layout, layoutPos, Quaternion.Euler(-180f, 180f, 0f));
-        Destroy(LayoutBR.transform.Find("R" + (levelMap.GetLength(0) - 1)).gameObject);
+        Transform layoutBR = Instantiate(layout, layoutPos, Quaternion.Euler(-180f, 180f, 0f));
+        Destroy(layoutBR.transform.Find("R" + (levelMap.GetLength(0) - 1)).gameObject);
 
         layoutPos = new Vector3(layout.position.x, layout.position.y - 2 * levelMap.GetLength(0) + 2, layout.position.z);
-        Transform LayoutBL = Instantiate(layout, layoutPos, Quaternion.Euler(-180f, 0f, 0f));
-        Destroy(LayoutBL.transform.Find("R" + (levelMap.GetLength(0) - 1)).gameObject);
+        Transform layoutBL = Instantiate(layout, layoutPos, Quaternion.Euler(-180f, 0f, 0f));
+        Destroy(layoutBL.transform.Find("R" + (levelMap.GetLength(0) - 1)).gameObject);
 
         GameObject[] pellets = GameObject.FindGameObjectsWithTag("Pellet");
         foreach (GameObject pellet in pellets) {
